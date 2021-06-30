@@ -10,46 +10,53 @@ app = FastAPI()
 # define a root `/` endpoint
 @app.get("/")
 def index():
-    return {"ok": True}
+    return {"okay": True}
 
 
 # Implement a /predict endpoint
 @app.get("/predict")
 def predict(
-    acousticness,
-    danceability,
-    duration_ms,
-    energy,
-    explicit,
-    id,
-    instrumentalness,
-    key,
-    liveness,
-    loudness,
-    mode,
-    name,
+    original_title,
+    title,
     release_date,
-    speechiness,
-    tempo,
-    valence,
-    artist,
+    duration_min,
+    description,
+    budget,
+    original_language,
+    status,
+    number_of_awards_won,
+    number_of_nominations,
+    has_collection,
+    all_genres,
+    top_countries,
+    number_of_top_productions,
+    available_in_english,
 ):
 
     # create dataframe for prediction
     X = pd.DataFrame(
         dict(
-            key=[key],
-            pickup_datetime=[formatted_pickup_datetime],
-            pickup_longitude=[float(pickup_longitude)],
-            pickup_latitude=[float(pickup_latitude)],
-            dropoff_longitude=[float(dropoff_longitude)],
-            dropoff_latitude=[float(dropoff_latitude)],
-            passenger_count=[int(passenger_count)],
+            original_title=[str(original_title)],
+            title=[str(title)],
+            release_date=[str(release_date)],
+            duration_min=[float(duration_min)],
+            description=[str(description)],
+            budget=[float(budget)],
+            original_language=[str(original_language)],
+            status=[str(status)],
+            number_of_awards_won=[int(number_of_awards_won)],
+            number_of_nominations=[int(number_of_nominations)],
+            has_collection=[int(has_collection)],
+            all_genres=[str(all_genres)],
+            top_countries=[str(top_countries)],
+            number_of_top_productions=[float(number_of_top_productions)],
+            available_in_english=[bool(available_in_english)],
         )
     )
 
     # load local pipe
     pipeline = joblib.load("model.joblib")
+
 
     # make prediction of popularity
     results = pipeline.predict(X)
@@ -60,7 +67,7 @@ def predict(
     pred = results
     print(type(pred))
 
-    return dict(prediction=pred)
+    return dict(prediction=pred)"""
 
 
 """the pipeline expects to be trained with a DataFrame containing
@@ -82,22 +89,4 @@ top_countries               string
 number_of_top_productions   float
 available_in_english        bool"""
 
-"""
-acousticness,
-danceability,
-duration_ms,
-energy,
-explicit,
-id,
-instrumentalness,
-key,
-liveness,
-loudness,
-mode,
-name,
-release_date,
-speechiness,
-tempo,
-valence,
-artist,
-"""
+if __name__== "__main__":
