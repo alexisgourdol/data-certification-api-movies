@@ -10,8 +10,8 @@ run_api:
 
 # 🚨 set your correct project id in GCP_PROJECT_ID
 
-export GCP_PROJECT_ID="durable-spot-288409"
-export DOCKER_IMAGE_NAME="data-certification"
+export GCP_PROJECT_ID="data-certif-movie-pop-june-21"
+export DOCKER_IMAGE_NAME="data-certification-ag"
 export GCR_MULTI_REGION="eu.gcr.io"
 export GCR_REGION="europe-west1"
 
